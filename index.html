@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Falcon Store</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #020817;
+  color: white;
+  min-height: 100vh;
+}
+
+header {
+  padding: 25px 18px 15px;
+  text-align: center;
+}
+
+.logo {
+  width: 85px;
+  height: 85px;
+  margin: auto;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #0b2b66, #06142e);
+  border: 2px solid #1683ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 45px;
+  box-shadow: 0 0 30px rgba(0,120,255,.35);
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.title span {
+  color: #1683ff;
+}
+
+.subtitle {
+  color: #8291aa;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.search {
+  margin: 20px 0;
+  background: #081a35;
+  border: 1px solid #173d70;
+  border-radius: 18px;
+  padding: 15px;
+  color: #8fa4c2;
+  font-size: 15px;
+}
+
+.hero {
+  background:
+    radial-gradient(circle at left, #087cff55, transparent 45%),
+    linear-gradient(135deg, #08295a, #061329);
+  border: 1px solid #1555a0;
+  border-radius: 22px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  color: #168cff;
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  color: #b6c5dc;
+  margin-bottom: 18px;
+}
+
+.button {
+  display: inline-block;
+  background: linear-gradient(135deg, #008cff, #005be8);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 5px 20px #007bff44;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  margin: 25px 3px 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.section-title span {
+  color: #168cff;
+  font-size: 14px;
+}
+
+.apps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.app {
+  background: linear-gradient(145deg, #081b38, #061329);
+  border: 1px solid #163d70;
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.app-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 31px;
+  background: #0b2448;
+  border: 1px solid #1765b8;
+}
+
+.app h3 {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.app p {
+  color: #7e91ad;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.install {
+  width: 100%;
+  border: 1px solid #168cff;
+  background: transparent;
+  color: #168cff;
+  padding: 8px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.latest {
+  background: #071a34;
+  border: 1px solid #163d70;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.latest-app {
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  border-bottom: 1px solid #153052;
+  gap: 12px;
+}
+
+.latest-app:last-child {
+  border-bottom: none;
+}
+
+.small-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  background: #0b2c58;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.info {
+  flex: 1;
+}
+
+.info strong {
+  display: block;
+}
+
+.info small {
+  color: #7186a3;
+}
+
+.latest .install {
+  width: auto;
+  padding: 7px 15px;
+}
+
+nav {
+  position: sticky;
+  bottom: 0;
+  background: rgba(3,12,28,.96);
+  backdrop-filter: blur(15px);
+  border-top: 1px solid #163d70;
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 5px;
+  margin-top: 30px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #7186a3;
+  text-align: center;
+  font-size: 12px;
+}
+
+nav a:first-child {
+  color: #168cff;
+}
+
+nav div {
+  font-size: 22px;
+  margin-bottom: 3px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 0 16px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+  <div class="logo">🦅</div>
+  <div class="title">FALCON <span>STORE</span></div>
+  <div class="subtitle">متجر التطبيقات الخاص بك</div>
+</header>
+
+<div class="search">
+  🔍 &nbsp; ابحث عن التطبيقات والألعاب...
+</div>
+
+<section class="hero">
+  <h1>تطبيقات مميزة</h1>
+  <p>كل ما تحتاجه في مكان واحد</p>
+  <a class="button" href="#">استكشف الآن</a>
+</section>
+
+<div class="section-title">
+  <span>★</span>
+  تطبيقات مميزة
+  <span>عرض الكل</span>
+</div>
+
+<div class="apps">
+
+  <div class="app">
+    <div class="app-icon">🟢</div>
+    <h3>WhatsApp++</h3>
+    <p>نسخة محسنة</p>
+    <button class="install">تثبيت</button>
+  </div>
+
+  <div class="app">
+    <div class="app-icon">📸</div>
+    <h3>Instagram++</h3>
+    <p>ميزات إضافية</p>
+    <button class="install">تثبيت</button>
+  </div>
+
+  <div class="app">
+    <div class="app-icon">▶️</div>
+    <h3>YouTube++</h3>
+    <p>تجربة محسنة</p>
+    <button class="install">تثبيت</button>
+  </div>
+
+  <div class="app">
+    <div class="app-icon">🎵</div>
+    <h3>TikTok++</h3>
+    <p>ميزات إضافية</p>
+    <button class="install">تثبيت</button>
+  </div>
+
+</div>
+
+<div class="section-title">
+  <span>عرض الكل</span>
+  أحدث التطبيقات
+  <span>◷</span>
+</div>
+
+<div class="latest">
+
+  <div class="latest-app">
+    <div class="small-icon">🟢</div>
+    <div class="info">
+      <strong>Spotify++</strong>
+      <small>استمع إلى الموسيقى المفضلة لديك</small>
+    </div>
+    <button class="install">تثبيت</button>
+  </div>
+
+  <div class="latest-app">
+    <div class="small-icon">🎵</div>
+    <div class="info">
+      <strong>TikTok++</strong>
+      <small>تجربة أفضل بدون قيود</small>
+    </div>
+    <button class="install">تثبيت</button>
+  </div>
+
+  <div class="latest-app">
+    <div class="small-icon">🔵</div>
+    <div class="info">
+      <strong>Facebook++</strong>
+      <small>تواصل مع أصدقائك بسهولة</small>
+    </div>
+    <button class="install">تثبيت</button>
+  </div>
+
+</div>
+
+</div>
+
+<nav>
+  <a href="#">
+    <div>⌂</div>
+    الرئيسية
+  </a>
+
+  <a href="#">
+    <div>▦</div>
+    التصنيفات
+  </a>
+
+  <a href="#">
+    <div>♡</div>
+    المفضلة
+  </a>
+
+  <a href="#">
+    <div>♙</div>
+    الحساب
+  </a>
+</nav>
+
+</body>
+</html>
