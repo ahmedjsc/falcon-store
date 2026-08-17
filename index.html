@@ -3,425 +3,530 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
 <title>Falcon Store</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-                 "Segoe UI", Arial, sans-serif;
-    background: #06101e;
-    color: #fff;
+body{
+    margin:0;
+    background:#000;
+    color:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+    "Segoe UI",Arial,sans-serif;
 }
 
-button,
-input {
-    font-family: inherit;
+button,input{
+    font-family:inherit;
 }
 
-button {
-    cursor: pointer;
+button{
+    cursor:pointer;
 }
 
-.app {
-    max-width: 600px;
-    margin: auto;
-    min-height: 100vh;
-    padding-bottom: 90px;
+.app{
+    max-width:560px;
+    margin:auto;
+    min-height:100vh;
+    padding-bottom:105px;
+}
+
+.page{
+    display:none;
+    animation:fade .2s ease;
+}
+
+.page.active{
+    display:block;
+}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(5px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
 /* HEADER */
 
-header {
-    padding: 25px 18px 15px;
-    background: linear-gradient(180deg,#0b1d35,#06101e);
+.header{
+    padding:45px 22px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-.header-top {
-    display: flex;
-    align-items: center;
+.header h1{
+    margin:0;
+    font-size:32px;
+    font-weight:800;
 }
 
-.logo {
-    width: 58px;
-    height: 58px;
-    border-radius: 17px;
-    background: linear-gradient(145deg,#168cff,#004fc1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    box-shadow: 0 8px 25px rgba(0,120,255,.35);
+.back{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:1px solid #333;
+    background:#1c1c1e;
+    color:#fff;
+    font-size:30px;
 }
 
-.brand {
-    margin-right: 13px;
+/* HOME */
+
+.logo{
+    width:95px;
+    height:95px;
+    margin:30px auto 15px;
+    border-radius:26px;
+    background:linear-gradient(145deg,#258cff,#0755bd);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:48px;
+    font-weight:900;
+    box-shadow:0 12px 35px rgba(20,120,255,.3);
 }
 
-.brand h1 {
-    font-size: 24px;
-    font-weight: 800;
+.home-title{
+    text-align:center;
+    font-size:31px;
+    font-weight:800;
 }
 
-.brand h1 span {
-    color: #168cff;
+.home-subtitle{
+    text-align:center;
+    color:#858589;
+    margin:7px 20px 25px;
 }
 
-.brand p {
-    color: #7f96b2;
-    font-size: 12px;
-    margin-top: 3px;
+.search{
+    width:calc(100% - 40px);
+    margin:10px 20px;
+    height:55px;
+    border-radius:18px;
+    border:1px solid #303034;
+    background:#1c1c1e;
+    color:#fff;
+    padding:0 18px;
+    font-size:17px;
+    outline:none;
 }
 
-/* SEARCH */
-
-.search-box {
-    margin-top: 20px;
-    position: relative;
+.search:focus{
+    border-color:#258cff;
 }
 
-.search-box input {
-    width: 100%;
-    padding: 15px 45px 15px 15px;
-    border-radius: 16px;
-    border: 1px solid #193653;
-    background: #0d1d31;
-    color: white;
-    outline: none;
-    font-size: 15px;
-}
-
-.search-box input:focus {
-    border-color: #168cff;
-}
-
-.search-icon {
-    position: absolute;
-    right: 15px;
-    top: 13px;
-    font-size: 20px;
-    color: #7892af;
-}
-
-/* HERO */
-
-.hero {
-    margin: 20px 18px;
-    padding: 25px;
-    border-radius: 24px;
-    background: linear-gradient(135deg,#087cff,#003d9b);
-    box-shadow: 0 12px 35px rgba(0,100,255,.25);
-}
-
-.hero h2 {
-    font-size: 25px;
-    margin-bottom: 8px;
-}
-
-.hero p {
-    color: #d7eaff;
-    font-size: 14px;
-    line-height: 1.7;
-}
-
-/* SECTIONS */
-
-.section {
-    padding: 0 18px;
-    margin-top: 28px;
-}
-
-.section-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.section-title h2 {
-    font-size: 20px;
-}
-
-.section-title span {
-    color: #168cff;
-    font-size: 13px;
+.section-title{
+    font-size:26px;
+    font-weight:800;
+    margin:30px 22px 15px;
 }
 
 /* APPS */
 
-.apps {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 13px;
+.categories{
+    display:flex;
+    gap:9px;
+    overflow-x:auto;
+    padding:5px 20px 15px;
 }
 
-.app-card {
-    background: linear-gradient(145deg,#0d1e32,#091626);
-    border: 1px solid #193654;
-    border-radius: 20px;
-    padding: 14px;
-    position: relative;
+.categories::-webkit-scrollbar{
+    display:none;
 }
 
-.app-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 17px;
-    background: linear-gradient(145deg,#168cff,#004fc1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 29px;
-    margin-bottom: 11px;
+.category{
+    white-space:nowrap;
+    background:#1c1c1e;
+    color:#aaa;
+    border:1px solid #343438;
+    border-radius:17px;
+    padding:10px 17px;
 }
 
-.favorite {
-    position: absolute;
-    left: 12px;
-    top: 12px;
-    width: 34px;
-    height: 34px;
-    border: 0;
-    border-radius: 50%;
-    background: #152a43;
-    color: #718ba7;
-    font-size: 18px;
+.category.active{
+    background:#258cff;
+    color:#fff;
+    border-color:#258cff;
 }
 
-.favorite.active {
-    color: #ff375f;
+.app-card{
+    margin:12px 20px;
+    padding:15px;
+    border-radius:24px;
+    background:#1c1c1e;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    border:1px solid #29292c;
 }
 
-.app-card h3 {
-    font-size: 15px;
-    margin-bottom: 5px;
+.app-icon{
+    width:63px;
+    height:63px;
+    min-width:63px;
+    border-radius:17px;
+    background:#29292c;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
 }
 
-.description {
-    color: #7e94ae;
-    font-size: 11px;
-    min-height: 30px;
+.app-info{
+    flex:1;
 }
 
-.stats {
-    display: flex;
-    justify-content: space-between;
-    color: #7890aa;
-    font-size: 10px;
-    margin: 10px 0;
+.app-name{
+    font-size:18px;
+    font-weight:700;
 }
 
-.install {
-    width: 100%;
-    border: 0;
-    background: #087cff;
-    color: white;
-    padding: 10px;
-    border-radius: 11px;
-    font-weight: 700;
+.app-desc{
+    color:#888;
+    font-size:13px;
+    margin-top:5px;
 }
 
-/* EMPTY */
-
-.empty {
-    text-align: center;
-    padding: 50px 20px;
-    color: #728aa5;
+.app-stats{
+    color:#777;
+    font-size:11px;
+    margin-top:6px;
 }
 
-.empty-icon {
-    font-size: 45px;
-    margin-bottom: 12px;
+.install-btn{
+    border:0;
+    background:#258cff;
+    color:#fff;
+    padding:10px 15px;
+    border-radius:13px;
+    font-weight:600;
 }
 
-/* ACCOUNT */
-
-.profile {
-    margin: 20px 18px;
-    padding: 25px;
-    text-align: center;
-    background: linear-gradient(145deg,#0e223a,#081526);
-    border: 1px solid #193653;
-    border-radius: 25px;
+.favorite-btn{
+    border:0;
+    background:#29292c;
+    color:#777;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    font-size:20px;
 }
 
-.profile-avatar {
-    width: 80px;
-    height: 80px;
-    margin: auto;
-    border-radius: 50%;
-    background: linear-gradient(145deg,#168cff,#004fc1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 35px;
-    margin-bottom: 12px;
+.favorite-btn.active{
+    color:#ff375f;
 }
 
-.profile h2 {
-    font-size: 20px;
+/* SETTINGS */
+
+.card{
+    background:#1c1c1e;
+    border-radius:32px;
+    margin:0 20px;
+    padding:4px 18px;
+    overflow:hidden;
 }
 
-.profile p {
-    color: #7f96b2;
-    margin-top: 5px;
+.row{
+    min-height:82px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    border-bottom:1px solid #39393b;
+    cursor:pointer;
 }
 
-.profile-stats {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 22px;
+.row:last-child{
+    border-bottom:0;
 }
 
-.profile-stat strong {
-    display: block;
-    font-size: 20px;
-    color: #168cff;
+.icon{
+    width:42px;
+    min-width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#3693ff;
+    font-size:27px;
 }
 
-.profile-stat span {
-    font-size: 11px;
-    color: #7c92ac;
+.row-title{
+    flex:1;
+    font-size:20px;
 }
 
-/* ADD IPA */
-
-.upload-box {
-    margin: 20px 18px;
-    padding: 35px 20px;
-    border-radius: 25px;
-    text-align: center;
-    background: linear-gradient(145deg,#0d2139,#081525);
-    border: 1px dashed #168cff;
+.arrow{
+    color:#777;
+    font-size:32px;
 }
 
-.upload-icon {
-    font-size: 50px;
-    margin-bottom: 15px;
+.description{
+    margin:12px 28px 28px;
+    color:#888;
+    line-height:1.7;
+    font-size:15px;
 }
 
-.upload-box h2 {
-    margin-bottom: 8px;
+/* INFO */
+
+.info-card{
+    background:#1c1c1e;
+    border-radius:30px;
+    margin:0 20px;
+    overflow:hidden;
 }
 
-.upload-box p {
-    color: #7f96b2;
-    font-size: 13px;
-    line-height: 1.7;
+.info-row{
+    padding:17px 20px;
+    border-bottom:1px solid #38383a;
 }
 
-.upload-button {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 13px 25px;
-    border-radius: 13px;
-    background: #087cff;
-    color: white;
-    font-weight: bold;
+.info-row:last-child{
+    border-bottom:0;
 }
 
-#ipaFile {
-    display: none;
+.info-label{
+    color:#89898e;
+    font-size:14px;
+    margin-bottom:6px;
 }
 
-.file-result {
-    margin-top: 18px;
-    color: #54a9ff;
-    font-size: 13px;
+.info-value{
+    color:#fff;
+    font-size:17px;
+    word-break:break-word;
+}
+
+.blue{
+    color:#3693ff;
+}
+
+.status{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:12px;
+    background:rgba(50,210,100,.15);
+    color:#4cdb79;
+}
+
+/* SOURCES */
+
+.source-card{
+    margin:15px 20px;
+    background:#1c1c1e;
+    border-radius:25px;
+    padding:20px;
+}
+
+.source-top{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.source-icon{
+    width:60px;
+    height:60px;
+    border-radius:17px;
+    background:linear-gradient(145deg,#258cff,#0755bd);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.source-name{
+    font-size:19px;
+    font-weight:700;
+}
+
+.source-url{
+    color:#777;
+    font-size:12px;
+    margin-top:5px;
+}
+
+/* UPLOAD */
+
+.upload-box{
+    margin:20px;
+    padding:45px 20px;
+    border:2px dashed #343438;
+    border-radius:30px;
+    background:#1c1c1e;
+    text-align:center;
+}
+
+.upload-icon{
+    font-size:52px;
+    color:#3693ff;
+}
+
+.upload-box h2{
+    margin:15px 0 8px;
+}
+
+.upload-box p{
+    color:#888;
+    line-height:1.7;
+}
+
+.upload-btn{
+    border:0;
+    background:#258cff;
+    color:white;
+    padding:13px 25px;
+    border-radius:16px;
+    font-size:16px;
+    margin-top:12px;
+}
+
+.file-result{
+    margin-top:18px;
+    color:#3693ff;
+    line-height:1.7;
 }
 
 /* DETAILS */
 
-.details {
-    padding: 25px 18px;
+.details{
+    padding:10px 20px;
 }
 
-.back {
-    border: 0;
-    background: #10253d;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 12px;
-    margin-bottom: 25px;
+.detail-top{
+    text-align:center;
+    padding:20px 0;
 }
 
-.detail-icon {
-    width: 100px;
-    height: 100px;
-    border-radius: 25px;
-    background: linear-gradient(145deg,#168cff,#004fc1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 45px;
-    margin-bottom: 15px;
+.detail-icon{
+    width:100px;
+    height:100px;
+    border-radius:25px;
+    margin:auto;
+    background:linear-gradient(145deg,#258cff,#0755bd);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:45px;
 }
 
-.details h1 {
-    font-size: 27px;
+.detail-title{
+    font-size:28px;
+    font-weight:800;
+    margin-top:15px;
 }
 
-.detail-info {
-    color: #7f96b2;
-    margin: 8px 0 20px;
+.detail-desc{
+    color:#888;
+    margin-top:7px;
 }
 
-.detail-box {
-    background: #0d1e32;
-    border: 1px solid #193653;
-    border-radius: 18px;
-    padding: 18px;
-    margin-top: 15px;
-    line-height: 1.8;
+.detail-box{
+    background:#1c1c1e;
+    border-radius:25px;
+    padding:20px;
+    margin-top:15px;
+    line-height:2;
+    color:#aaa;
 }
 
-/* NAVIGATION */
-
-.bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(600px,100%);
-    height: 76px;
-    background: rgba(5,15,28,.96);
-    backdrop-filter: blur(18px);
-    border-top: 1px solid #193653;
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    z-index: 100;
+.detail-box strong{
+    color:#fff;
 }
 
-.nav-item {
-    border: 0;
-    background: transparent;
-    color: #7188a3;
-    font-size: 10px;
+/* FAVORITES */
+
+.empty{
+    text-align:center;
+    padding:70px 20px;
+    color:#777;
 }
 
-.nav-item.active {
-    color: #168cff;
+.empty-icon{
+    font-size:55px;
+    margin-bottom:15px;
 }
 
-.nav-icon {
-    display: block;
-    font-size: 22px;
-    margin-bottom: 4px;
+/* BOTTOM NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(440px,calc(100% - 35px));
+    height:76px;
+    background:rgba(31,31,33,.95);
+    border:1px solid #38383a;
+    border-radius:40px;
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    z-index:100;
+    backdrop-filter:blur(18px);
 }
 
-/* HIDDEN */
-
-.page {
-    display: none;
+.nav-btn{
+    width:31%;
+    height:64px;
+    border:0;
+    background:transparent;
+    color:#eee;
+    border-radius:32px;
+    font-size:13px;
 }
 
-.page.active {
-    display: block;
+.nav-icon{
+    display:block;
+    font-size:26px;
+    margin-bottom:3px;
+}
+
+.nav-btn.active{
+    background:#3b3b3d;
+    color:#3693ff;
+}
+
+/* MODAL */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    z-index:500;
+    align-items:flex-end;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    width:min(560px,100%);
+    background:#1c1c1e;
+    border-radius:30px 30px 0 0;
+    padding:25px;
+}
+
+.modal-title{
+    font-size:23px;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.close{
+    width:100%;
+    border:0;
+    background:#333336;
+    color:#fff;
+    padding:14px;
+    border-radius:15px;
+    margin-top:15px;
 }
 </style>
 </head>
@@ -430,487 +535,823 @@ header {
 
 <div class="app">
 
-<!-- HOME -->
+<!-- ================= الرئيسية ================= -->
 
-<div id="homePage" class="page active">
+<section id="home" class="page active">
 
-<header>
-
-    <div class="header-top">
-
-        <div class="logo">
-            🦅
-        </div>
-
-        <div class="brand">
-            <h1>FALCON <span>STORE</span></h1>
-            <p>متجر تطبيقات iOS</p>
-        </div>
-
+    <div class="header">
+        <div></div>
+        <button class="back" onclick="openPage('settings')">⚙</button>
     </div>
 
-    <div class="search-box">
+    <div class="logo">F</div>
 
-        <span class="search-icon">⌕</span>
+    <div class="home-title">Falcon Store</div>
 
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="ابحث عن تطبيق..."
-            oninput="searchApps()"
-        >
-
+    <div class="home-subtitle">
+        متجر تطبيقات iOS
     </div>
-
-</header>
-
-
-<div class="hero">
-
-    <h2>مرحباً بك 👋</h2>
-
-    <p>
-        اكتشف أفضل التطبيقات والألعاب
-        وحمّل تطبيقاتك المفضلة بسهولة.
-    </p>
-
-</div>
-
-
-<div class="section">
-
-    <div class="section-title">
-
-        <h2>⭐ أفضل التطبيقات</h2>
-
-        <span>الأكثر تنزيلًا</span>
-
-    </div>
-
-    <div id="appsContainer" class="apps"></div>
-
-</div>
-
-</div>
-
-
-<!-- FAVORITES -->
-
-<div id="favoritesPage" class="page">
-
-<header>
-
-    <div class="brand" style="padding:20px;">
-        <h1>❤️ المفضلة</h1>
-        <p>تطبيقاتك المحفوظة</p>
-    </div>
-
-</header>
-
-<div class="section">
-
-    <div id="favoritesContainer" class="apps"></div>
-
-</div>
-
-</div>
-
-
-<!-- ACCOUNT -->
-
-<div id="accountPage" class="page">
-
-<header>
-
-    <div class="brand" style="padding:20px;">
-        <h1>👤 الحساب</h1>
-        <p>إدارة حسابك</p>
-    </div>
-
-</header>
-
-<div class="profile">
-
-    <div class="profile-avatar">
-        🦅
-    </div>
-
-    <h2>Falcon User</h2>
-
-    <p>عضو في Falcon Store</p>
-
-    <div class="profile-stats">
-
-        <div class="profile-stat">
-            <strong id="favoriteCount">0</strong>
-            <span>المفضلة</span>
-        </div>
-
-        <div class="profile-stat">
-            <strong>0</strong>
-            <span>التحميلات</span>
-        </div>
-
-        <div class="profile-stat">
-            <strong>Free</strong>
-            <span>الخطة</span>
-        </div>
-
-    </div>
-
-</div>
-
-<div class="section">
-
-    <div class="detail-box">
-        ⚙️ الإعدادات
-    </div>
-
-    <div class="detail-box">
-        📥 سجل التحميلات
-    </div>
-
-    <div class="detail-box">
-        💳 الاشتراك
-    </div>
-
-    <div class="detail-box">
-        🛟 الدعم والمساعدة
-    </div>
-
-</div>
-
-</div>
-
-
-<!-- ADD IPA -->
-
-<div id="uploadPage" class="page">
-
-<header>
-
-    <div class="brand" style="padding:20px;">
-        <h1>📂 إضافة IPA</h1>
-        <p>إضافة ملف إلى المتجر</p>
-    </div>
-
-</header>
-
-<div class="upload-box">
-
-    <div class="upload-icon">
-        📦
-    </div>
-
-    <h2>إضافة ملف IPA</h2>
-
-    <p>
-        اختر ملف IPA من جهازك لإضافته إلى مشروع Falcon Store.
-    </p>
-
-    <label class="upload-button" for="ipaFile">
-        اختيار ملف IPA
-    </label>
 
     <input
-        id="ipaFile"
-        type="file"
-        accept=".ipa"
-        onchange="ipaSelected(event)"
+        class="search"
+        id="homeSearch"
+        type="search"
+        placeholder="البحث عن تطبيق..."
+        oninput="searchHome()"
     >
 
-    <div id="fileResult" class="file-result"></div>
+    <div class="section-title">
+        أفضل التطبيقات
+    </div>
+
+    <div class="categories">
+        <button class="category active" onclick="sortApps('downloads',this)">
+            الأكثر تنزيلًا
+        </button>
+
+        <button class="category" onclick="sortApps('rating',this)">
+            الأفضل
+        </button>
+
+        <button class="category" onclick="sortApps('new',this)">
+            الأحدث
+        </button>
+    </div>
+
+    <div id="homeApps"></div>
+
+</section>
+
+
+<!-- ================= التطبيقات ================= -->
+
+<section id="apps" class="page">
+
+    <div class="header">
+        <div></div>
+        <h1>التطبيقات</h1>
+    </div>
+
+    <input
+        class="search"
+        id="appSearch"
+        type="search"
+        placeholder="البحث عن تطبيق..."
+        oninput="searchAppsPage()"
+    >
+
+    <div class="categories">
+
+        <button class="category active">
+            الكل
+        </button>
+
+        <button class="category">
+            ألعاب
+        </button>
+
+        <button class="category">
+            تواصل
+        </button>
+
+        <button class="category">
+            أدوات
+        </button>
+
+        <button class="category">
+            وسائط
+        </button>
+
+    </div>
+
+    <div id="appsList"></div>
+
+</section>
+
+
+<!-- ================= المصادر ================= -->
+
+<section id="sources" class="page">
+
+    <div class="header">
+        <div></div>
+        <h1>المصادر</h1>
+    </div>
+
+    <div class="section-title">
+        مصادر التطبيقات
+    </div>
+
+    <div class="source-card">
+
+        <div class="source-top">
+
+            <div class="source-icon">
+                F
+            </div>
+
+            <div>
+                <div class="source-name">
+                    Falcon Store
+                </div>
+
+                <div class="source-url">
+                    المصدر الرسمي
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="source-card">
+
+        <div class="row">
+            <div class="icon">＋</div>
+            <div class="row-title">إضافة مصدر</div>
+            <div class="arrow">‹</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= المفضلة ================= -->
+
+<section id="favorites" class="page">
+
+    <div class="header">
+        <div></div>
+        <h1>المفضلة</h1>
+    </div>
+
+    <div id="favoritesList"></div>
+
+</section>
+
+
+<!-- ================= الإعدادات ================= -->
+
+<section id="settings" class="page">
+
+    <div class="header">
+        <button class="back" onclick="goHome()">›</button>
+        <h1>الإعدادات</h1>
+    </div>
+
+    <div class="section-title">
+        الإعدادات
+    </div>
+
+    <div class="card">
+
+        <div class="row" onclick="openPage('info')">
+            <div class="icon">👤</div>
+            <div class="row-title">معلوماتي</div>
+            <div class="arrow">‹</div>
+        </div>
+
+        <div class="row">
+            <div class="icon">♧</div>
+            <div class="row-title">الإشعارات</div>
+            <div class="arrow">‹</div>
+        </div>
+
+        <div class="row">
+            <div class="icon">◎</div>
+            <div class="row-title">اللغة</div>
+            <div class="arrow">‹</div>
+        </div>
+
+        <div class="row">
+            <div class="icon">⌁</div>
+            <div class="row-title">المظهر</div>
+            <div class="arrow">‹</div>
+        </div>
+
+    </div>
+
+    <div class="section-title">
+        الميزات
+    </div>
+
+    <div class="card">
+
+        <div class="row">
+            <div class="icon">✓</div>
+            <div class="row-title">الشهادات</div>
+            <div class="arrow">‹</div>
+        </div>
+
+        <div class="row">
+            <div class="icon">✍</div>
+            <div class="row-title">خيارات التوقيع</div>
+            <div class="arrow">‹</div>
+        </div>
+
+        <div class="row" onclick="openPage('upload')">
+            <div class="icon">＋</div>
+            <div class="row-title">إضافة ملف IPA</div>
+            <div class="arrow">‹</div>
+        </div>
+
+        <div class="row">
+            <div class="icon">↓</div>
+            <div class="row-title">التثبيت</div>
+            <div class="arrow">‹</div>
+        </div>
+
+    </div>
+
+    <div class="description">
+        تكوين طريقة تثبيت التطبيقات والتوقيع وإدارة ملفات IPA.
+    </div>
+
+</section>
+
+
+<!-- ================= معلوماتي ================= -->
+
+<section id="info" class="page">
+
+    <div class="header">
+        <button class="back" onclick="openPage('settings')">›</button>
+        <h1>معلوماتي</h1>
+    </div>
+
+    <div class="section-title">
+        معلومات الحساب
+    </div>
+
+    <div class="info-card">
+
+        <div class="info-row">
+            <div class="info-label">الاسم</div>
+            <div class="info-value">Ahmed N.Jassim</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">رقم المجموعة / UDID</div>
+            <div class="info-value blue">غير محدد</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">المنشئ</div>
+            <div class="info-value">Ahmed N.Jassim</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">الجهاز ونوعه</div>
+            <div class="info-value" id="deviceInfo">
+                iPhone — غير محدد
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">حالة الاشتراك</div>
+            <div class="info-value">
+                <span class="status">نشط</span>
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">موعد التفعيل</div>
+            <div class="info-value">غير محدد</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">موعد الانتهاء السنوي</div>
+            <div class="info-value">غير محدد</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">رقم المجموعة</div>
+            <div class="info-value blue">غير محدد</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">الكود</div>
+            <div class="info-value blue">غير محدد</div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-label">رقم الهاتف</div>
+            <div class="info-value">غير محدد</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= تفاصيل التطبيق ================= -->
+
+<section id="details" class="page">
+
+    <div class="header">
+        <button class="back" onclick="goBack()">›</button>
+        <h1>التطبيق</h1>
+    </div>
+
+    <div id="detailsContent"></div>
+
+</section>
+
+
+<!-- ================= إضافة IPA ================= -->
+
+<section id="upload" class="page">
+
+    <div class="header">
+        <div></div>
+        <h1>إضافة IPA</h1>
+    </div>
+
+    <div class="upload-box">
+
+        <div class="upload-icon">
+            ↑
+        </div>
+
+        <h2>
+            إضافة ملف IPA
+        </h2>
+
+        <p>
+            اختر ملف IPA من جهازك.
+            سيتم تجهيز الملف للرفع والتوقيع لاحقًا.
+        </p>
+
+        <input
+            type="file"
+            id="ipaFile"
+            accept=".ipa"
+            hidden
+            onchange="ipaSelected(event)"
+        >
+
+        <button
+            class="upload-btn"
+            onclick="document.getElementById('ipaFile').click()"
+        >
+            اختيار ملف IPA
+        </button>
+
+        <div id="fileResult" class="file-result"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= الحساب ================= -->
+
+<section id="account" class="page">
+
+    <div class="header">
+        <div></div>
+        <h1>الحساب</h1>
+    </div>
+
+    <div class="section-title">
+        حسابي
+    </div>
+
+    <div class="card">
+
+        <div class="row" onclick="openPage('info')">
+            <div class="icon">👤</div>
+            <div class="row-title">معلوماتي</div>
+            <div class="arrow">‹</div>
+        </div>
+
+        <div class="row" onclick="openPage('favorites')">
+            <div class="icon">♥</div>
+            <div class="row-title">المفضلة</div>
+            <div class="arrow">‹</div>
+        </div>
+
+        <div class="row">
+            <div class="icon">↓</div>
+            <div class="row-title">سجل التنزيلات</div>
+            <div class="arrow">‹</div>
+        </div>
+
+    </div>
+
+</section>
 
 </div>
 
-</div>
 
-
-<!-- DETAILS -->
-
-<div id="detailsPage" class="page">
-
-<div class="details">
-
-    <button class="back" onclick="showPage('homePage')">
-        ← رجوع
-    </button>
-
-    <div id="detailContent"></div>
-
-</div>
-
-</div>
-
-
-<!-- BOTTOM NAV -->
+<!-- ================= شريط التنقل ================= -->
 
 <nav class="bottom-nav">
 
     <button
-        class="nav-item active"
-        onclick="showPage('homePage',this)"
+        class="nav-btn"
+        data-page="sources"
+        onclick="navPage('sources',this)"
+    >
+        <span class="nav-icon">◉</span>
+        المصادر
+    </button>
+
+    <button
+        class="nav-btn"
+        data-page="apps"
+        onclick="navPage('apps',this)"
+    >
+        <span class="nav-icon">▱</span>
+        التطبيقات
+    </button>
+
+    <button
+        class="nav-btn active"
+        data-page="home"
+        onclick="navPage('home',this)"
     >
         <span class="nav-icon">⌂</span>
         الرئيسية
     </button>
 
-    <button
-        class="nav-item"
-        onclick="showPage('favoritesPage',this)"
-    >
-        <span class="nav-icon">♡</span>
-        المفضلة
-    </button>
-
-    <button
-        class="nav-item"
-        onclick="showPage('accountPage',this)"
-    >
-        <span class="nav-icon">♙</span>
-        الحساب
-    </button>
-
-    <button
-        class="nav-item"
-        onclick="showPage('uploadPage',this)"
-    >
-        <span class="nav-icon">＋</span>
-        إضافة IPA
-    </button>
-
-    <button
-        class="nav-item"
-        onclick="showPage('homePage',this)"
-    >
-        <span class="nav-icon">⌕</span>
-        بحث
-    </button>
-
 </nav>
-
-</div>
 
 
 <script>
 
-/* التطبيقات */
+/* ==========================================
+   التطبيقات
+========================================== */
 
 const apps = [
 
     {
-        id: 1,
-        name: "Falcon Plus",
-        icon: "🦅",
-        description: "تطبيق Falcon Store",
-        downloads: 12500,
-        rating: 4.9,
-        version: "1.0.0"
+        id:1,
+        name:"Falcon Plus",
+        icon:"🦅",
+        description:"تطبيق Falcon Store",
+        downloads:12500,
+        rating:4.9,
+        version:"1.0.0"
     },
 
     {
-        id: 2,
-        name: "Games Hub",
-        icon: "🎮",
-        description: "أفضل الألعاب",
-        downloads: 9800,
-        rating: 4.8,
-        version: "2.1.0"
+        id:2,
+        name:"Games Hub",
+        icon:"🎮",
+        description:"أفضل الألعاب",
+        downloads:9800,
+        rating:4.8,
+        version:"2.1.0"
     },
 
     {
-        id: 3,
-        name: "Tools Pro",
-        icon: "🛠️",
-        description: "أدوات مفيدة",
-        downloads: 7200,
-        rating: 4.7,
-        version: "1.5.2"
+        id:3,
+        name:"Tools Pro",
+        icon:"🛠️",
+        description:"أدوات مفيدة",
+        downloads:7200,
+        rating:4.7,
+        version:"1.5.2"
     },
 
     {
-        id: 4,
-        name: "Media Player",
-        icon: "▶️",
-        description: "مشغل الوسائط",
-        downloads: 5100,
-        rating: 4.6,
-        version: "3.0.1"
+        id:4,
+        name:"Media Player",
+        icon:"▶️",
+        description:"مشغل الوسائط",
+        downloads:5100,
+        rating:4.6,
+        version:"3.0.1"
     },
 
     {
-        id: 5,
-        name: "Photo Editor",
-        icon: "📸",
-        description: "تحرير الصور",
-        downloads: 3500,
-        rating: 4.5,
-        version: "1.2.0"
+        id:5,
+        name:"Photo Editor",
+        icon:"📸",
+        description:"تحرير الصور",
+        downloads:3500,
+        rating:4.5,
+        version:"1.2.0"
     },
 
     {
-        id: 6,
-        name: "Music Player",
-        icon: "🎵",
-        description: "استمع إلى الموسيقى",
-        downloads: 2100,
-        rating: 4.4,
-        version: "2.0.0"
+        id:6,
+        name:"Music Player",
+        icon:"🎵",
+        description:"مشغل موسيقى",
+        downloads:2100,
+        rating:4.4,
+        version:"2.0.0"
     }
 
 ];
 
 
-/* المفضلة */
+/* ==========================================
+   المفضلة
+========================================== */
 
 let favorites =
-    JSON.parse(localStorage.getItem("falconFavorites")) || [];
+    JSON.parse(
+        localStorage.getItem("falconFavorites") || "[]"
+    );
 
 
-/* عرض التطبيقات */
+/* ==========================================
+   الصفحة
+========================================== */
 
-function renderApps(list = apps) {
+let previousPage = "home";
 
-    const container =
-        document.getElementById("appsContainer");
 
-    container.innerHTML = "";
+function openPage(pageId){
 
-    if (list.length === 0) {
+    const current =
+        document.querySelector(".page.active");
 
-        container.innerHTML = `
-            <div class="empty" style="grid-column:1/-1">
-                <div class="empty-icon">🔍</div>
-                لا توجد نتائج
-            </div>
-        `;
-
-        return;
+    if(current){
+        previousPage = current.id;
     }
 
-    list
-        .sort((a,b) => b.downloads - a.downloads)
-        .forEach(app => {
+    document
+        .querySelectorAll(".page")
+        .forEach(page =>
+            page.classList.remove("active")
+        );
 
-            const isFavorite =
-                favorites.includes(app.id);
+    const page =
+        document.getElementById(pageId);
 
-            container.innerHTML += createAppCard(
-                app,
-                isFavorite
-            );
+    if(page){
+        page.classList.add("active");
+    }
 
-        });
+    window.scrollTo(0,0);
 
+    if(pageId === "home")
+        renderHome();
+
+    if(pageId === "apps")
+        renderApps();
+
+    if(pageId === "favorites")
+        renderFavorites();
 }
 
 
-/* بطاقة التطبيق */
+function navPage(page,button){
 
-function createAppCard(app,isFavorite) {
+    openPage(page);
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    button.classList.add("active");
+}
+
+
+function goHome(){
+
+    openPage("home");
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    document
+        .querySelector('[data-page="home"]')
+        .classList.add("active");
+}
+
+
+function goBack(){
+
+    openPage(previousPage);
+}
+
+
+/* ==========================================
+   بناء بطاقة التطبيق
+========================================== */
+
+function appCard(app){
+
+    const fav =
+        favorites.includes(app.id);
 
     return `
 
-        <div class="app-card">
+    <div class="app-card">
 
-            <button
-                class="favorite ${isFavorite ? "active" : ""}"
-                onclick="toggleFavorite(${app.id})"
-            >
-                ${isFavorite ? "♥" : "♡"}
-            </button>
+        <div
+            class="app-icon"
+            onclick="showDetails(${app.id})"
+        >
+            ${app.icon}
+        </div>
 
-            <div
-                class="app-icon"
-                onclick="showDetails(${app.id})"
-            >
-                ${app.icon}
+        <div class="app-info">
+
+            <div class="app-name">
+                ${app.name}
             </div>
 
-            <h3>${app.name}</h3>
-
-            <div class="description">
+            <div class="app-desc">
                 ${app.description}
             </div>
 
-            <div class="stats">
-
-                <span>
-                    ⭐ ${app.rating}
-                </span>
-
-                <span>
-                    ${formatDownloads(app.downloads)}
-                </span>
-
+            <div class="app-stats">
+                ⭐ ${app.rating}
+                &nbsp; • &nbsp;
+                ${formatDownloads(app.downloads)} تنزيل
             </div>
-
-            <button
-                class="install"
-                onclick="showDetails(${app.id})"
-            >
-                تفاصيل
-            </button>
 
         </div>
 
-    `;
+        <button
+            class="favorite-btn ${fav ? "active" : ""}"
+            onclick="toggleFavorite(${app.id})"
+        >
+            ${fav ? "♥" : "♡"}
+        </button>
 
+        <button
+            class="install-btn"
+            onclick="showDetails(${app.id})"
+        >
+            تفاصيل
+        </button>
+
+    </div>
+
+    `;
 }
 
 
-/* ترتيب المفضلة */
+/* ==========================================
+   الرئيسية
+========================================== */
 
-function renderFavorites() {
+function renderHome(){
 
     const container =
-        document.getElementById("favoritesContainer");
+        document.getElementById("homeApps");
 
-    const favoriteApps =
-        apps.filter(app => favorites.includes(app.id));
+    const sorted =
+        [...apps].sort(
+            (a,b) => b.downloads - a.downloads
+        );
 
-    document.getElementById("favoriteCount").textContent =
-        favoriteApps.length;
-
-    if (favoriteApps.length === 0) {
-
-        container.innerHTML = `
-            <div class="empty" style="grid-column:1/-1">
-
-                <div class="empty-icon">
-                    ♡
-                </div>
-
-                لم تضف أي تطبيق إلى المفضلة بعد.
-
-            </div>
-        `;
-
-        return;
-    }
-
-    container.innerHTML = "";
-
-    favoriteApps.forEach(app => {
-
-        container.innerHTML +=
-            createAppCard(app,true);
-
-    });
-
+    container.innerHTML =
+        sorted.map(app => appCard(app)).join("");
 }
 
 
-/* إضافة / إزالة المفضلة */
+/* ==========================================
+   التطبيقات
+========================================== */
 
-function toggleFavorite(id) {
+function renderApps(){
 
-    if (favorites.includes(id)) {
+    const container =
+        document.getElementById("appsList");
+
+    const sorted =
+        [...apps].sort(
+            (a,b) => b.downloads - a.downloads
+        );
+
+    container.innerHTML =
+        sorted.map(app => appCard(app)).join("");
+}
+
+
+/* ==========================================
+   البحث
+========================================== */
+
+function searchHome(){
+
+    const value =
+        document
+        .getElementById("homeSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const filtered =
+        apps.filter(app =>
+            app.name.toLowerCase().includes(value) ||
+            app.description.toLowerCase().includes(value)
+        );
+
+    document.getElementById("homeApps").innerHTML =
+        filtered.length
+        ? filtered.map(app => appCard(app)).join("")
+        : emptySearch();
+}
+
+
+function searchAppsPage(){
+
+    const value =
+        document
+        .getElementById("appSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const filtered =
+        apps.filter(app =>
+            app.name.toLowerCase().includes(value) ||
+            app.description.toLowerCase().includes(value)
+        );
+
+    document.getElementById("appsList").innerHTML =
+        filtered.length
+        ? filtered.map(app => appCard(app)).join("")
+        : emptySearch();
+}
+
+
+function emptySearch(){
+
+    return `
+        <div class="empty">
+            <div class="empty-icon">⌕</div>
+            لا توجد نتائج
+        </div>
+    `;
+}
+
+
+/* ==========================================
+   ترتيب التطبيقات
+========================================== */
+
+function sortApps(type,button){
+
+    document
+        .querySelectorAll(".category")
+        .forEach(x =>
+            x.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    let sorted = [...apps];
+
+    if(type === "downloads"){
+
+        sorted.sort(
+            (a,b) => b.downloads - a.downloads
+        );
+
+    }
+
+    if(type === "rating"){
+
+        sorted.sort(
+            (a,b) => b.rating - a.rating
+        );
+
+    }
+
+    if(type === "new"){
+
+        sorted.sort(
+            (a,b) => b.id - a.id
+        );
+
+    }
+
+    document.getElementById("homeApps").innerHTML =
+        sorted.map(app => appCard(app)).join("");
+}
+
+
+/* ==========================================
+   المفضلة
+========================================== */
+
+function toggleFavorite(id){
+
+    if(favorites.includes(id)){
 
         favorites =
-            favorites.filter(item => item !== id);
+            favorites.filter(
+                item => item !== id
+            );
 
-    } else {
+    }else{
 
         favorites.push(id);
 
@@ -921,186 +1362,229 @@ function toggleFavorite(id) {
         JSON.stringify(favorites)
     );
 
+    renderHome();
     renderApps();
     renderFavorites();
-
 }
 
 
-/* البحث */
+function renderFavorites(){
 
-function searchApps() {
+    const container =
+        document.getElementById("favoritesList");
 
-    const query =
-        document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase()
-        .trim();
-
-    const results =
-        apps.filter(app =>
-            app.name.toLowerCase().includes(query) ||
-            app.description.toLowerCase().includes(query)
+    const list =
+        apps.filter(
+            app => favorites.includes(app.id)
         );
 
-    renderApps(results);
+    if(!list.length){
 
+        container.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">♡</div>
+                لا توجد تطبيقات في المفضلة
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML =
+        list.map(app => appCard(app)).join("");
 }
 
 
-/* تفاصيل التطبيق */
+/* ==========================================
+   تفاصيل التطبيق
+========================================== */
 
-function showDetails(id) {
+function showDetails(id){
 
     const app =
-        apps.find(item => item.id === id);
+        apps.find(x => x.id === id);
 
-    document.getElementById("detailContent").innerHTML = `
+    if(!app) return;
 
-        <div class="detail-icon">
-            ${app.icon}
+    previousPage =
+        document.querySelector(".page.active").id;
+
+    document.getElementById("detailsContent").innerHTML = `
+
+        <div class="detail-top">
+
+            <div class="detail-icon">
+                ${app.icon}
+            </div>
+
+            <div class="detail-title">
+                ${app.name}
+            </div>
+
+            <div class="detail-desc">
+                ${app.description}
+            </div>
+
         </div>
-
-        <h1>${app.name}</h1>
-
-        <div class="detail-info">
-            ${app.description}
-        </div>
-
-        <button
-            class="install"
-            onclick="alert('سيتم ربط زر التثبيت بنظام IPA لاحقاً')"
-        >
-            تثبيت التطبيق
-        </button>
 
         <div class="detail-box">
 
-            ⭐ التقييم: ${app.rating}/5
+            <strong>معلومات التطبيق</strong>
 
             <br>
 
-            📥 التنزيلات:
+            الإصدار: ${app.version}
+
+            <br>
+
+            التقييم: ⭐ ${app.rating}
+
+            <br>
+
+            التنزيلات:
             ${formatDownloads(app.downloads)}
 
-            <br>
-
-            📦 الإصدار:
-            ${app.version}
-
         </div>
 
         <div class="detail-box">
 
-            <strong>حول التطبيق</strong>
+            <strong>المفضلة</strong>
+
+            <br>
+
+            يمكنك إضافة التطبيق إلى
+            المفضلة والرجوع إليه لاحقًا.
 
             <br><br>
 
-            هذا التطبيق متوفر على
-            Falcon Store.
+            <button
+                class="install-btn"
+                onclick="toggleFavorite(${app.id});showDetails(${app.id})"
+            >
+                ${favorites.includes(app.id)
+                    ? "♥ إزالة من المفضلة"
+                    : "♡ إضافة إلى المفضلة"}
+            </button>
 
-            سيتم إضافة معلومات التطبيق
-            والصور والتحديثات لاحقًا.
+        </div>
+
+        <div class="detail-box">
+
+            <strong>التثبيت</strong>
+
+            <br>
+
+            <span style="color:#888">
+                ملف IPA الموقّع سيظهر هنا
+                عند ربط نظام التوقيع بالخادم.
+            </span>
+
+            <br><br>
+
+            <button
+                class="install-btn"
+                onclick="downloadApp(${app.id})"
+            >
+                ↓ تنزيل
+            </button>
 
         </div>
 
     `;
 
-    showPage("detailsPage");
-
+    openPage("details");
 }
 
 
-/* التنقل */
+/* ==========================================
+   تنزيل
+========================================== */
 
-function showPage(pageId,button) {
+function downloadApp(id){
 
-    document
-        .querySelectorAll(".page")
-        .forEach(page =>
-            page.classList.remove("active")
-        );
+    const app =
+        apps.find(x => x.id === id);
 
-    document
-        .getElementById(pageId)
-        .classList.add("active");
-
-
-    document
-        .querySelectorAll(".nav-item")
-        .forEach(item =>
-            item.classList.remove("active")
-        );
-
-    if (button) {
-
-        button.classList.add("active");
-
-    }
-
-    if (pageId === "favoritesPage") {
-
-        renderFavorites();
-
-    }
-
+    alert(
+        "التنزيل الفعلي لـ " +
+        app.name +
+        " سيتم ربطه بملف IPA الموقّع لاحقًا."
+    );
 }
 
 
-/* ملف IPA */
+/* ==========================================
+   IPA
+========================================== */
 
-function ipaSelected(event) {
+function ipaSelected(event){
 
     const file =
         event.target.files[0];
 
-    if (!file) return;
-
     const result =
         document.getElementById("fileResult");
 
-    if (!file.name.toLowerCase().endsWith(".ipa")) {
+    if(!file)
+        return;
 
-        result.textContent =
+    if(
+        !file.name
+        .toLowerCase()
+        .endsWith(".ipa")
+    ){
+
+        result.innerHTML =
             "❌ الرجاء اختيار ملف IPA فقط.";
 
         return;
     }
 
+    const size =
+        (file.size / 1024 / 1024).toFixed(2);
+
     result.innerHTML = `
-        ✅ تم اختيار الملف:
+
+        ✅ تم اختيار الملف
 
         <br>
 
         <strong>${file.name}</strong>
 
+        <br>
+
+        الحجم: ${size} MB
+
         <br><br>
 
-        حجم الملف:
-        ${(file.size / 1024 / 1024).toFixed(2)} MB
-    `;
+        الملف جاهز للرفع عند ربط
+        الخادم.
 
+    `;
 }
 
 
-/* عدد التنزيلات */
+/* ==========================================
+   عدد التنزيلات
+========================================== */
 
-function formatDownloads(number) {
+function formatDownloads(number){
 
-    if (number >= 1000000)
+    if(number >= 1000000)
         return (number / 1000000).toFixed(1) + "M";
 
-    if (number >= 1000)
+    if(number >= 1000)
         return (number / 1000).toFixed(1) + "K";
 
     return number;
-
 }
 
 
-/* تشغيل */
+/* ==========================================
+   تشغيل أولي
+========================================== */
 
+renderHome();
 renderApps();
 renderFavorites();
 
